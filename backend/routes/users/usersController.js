@@ -68,6 +68,23 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+// GET A USER
+// @ URL: /api/users/me
+// access Private
+const getMe = asyncHandler(async (req, res) => {
+  // rew.user.id gives only the id back to the frontend
+  // res.status(200).json(req.user);
+
+  // To send just name, email, id instead of all the details
+  const user = {
+    id: req.user._id,
+    email: req.user.email,
+    name: req.user.name,
+  };
+
+  res.status(200).json(user);
+});
+
 // Generate tokens
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -75,4 +92,4 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = { registerUser, loginUser };
+module.exports = { registerUser, loginUser, getMe };
