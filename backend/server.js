@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api/users', require('./routes/users/usersRoute'));
+app.use('/api/tickets', require('./routes/tickets/ticketsRoute'));
 
 // Middleware
 app.use(errorHandler);
